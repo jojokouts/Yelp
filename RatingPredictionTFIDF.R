@@ -54,8 +54,9 @@ fitControl <- trainControl(## 10-fold CV
                            ## repeated ten times
                            repeats = 10)
 
+## run code for method = "multinom", and then run exact same code for method = "rf" (for Random Forest model)
 modelFit <- train(as.factor(stars)~., data=training, 
-                  method = "rf")
+                  method = "multinom", trControl = fitControl)
 ##modelFit
 predictions <- predict(modelFit, newdata=testing)
 ##confusionMatrix(predictions, testing$review_stars_bin)
